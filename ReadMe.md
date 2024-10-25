@@ -1,4 +1,4 @@
-# What
+## What
 
 (2024-10)
 
@@ -7,11 +7,16 @@ Bits access. Arduino library. In growing.
 Currently there's only set-bit/get-bit functions for bytes.
 I can write `v & ~(5 << 1) >> 5`, no worries. But I don't like it.
 
+## Code
+
+* [Example][Example]
+* [Interface][Interface]
+* [Implementation][Implementation]
+
 ## Requirements
 
   * arduino-cli
   * bash
-
 
 ## Install
 
@@ -23,7 +28,7 @@ Run [Install.sh](Install.sh).
 Run [Remove.sh](Remove.sh).
 
 
-# Compile
+## Compile
 
 Zero-warnings compilation:
 
@@ -31,14 +36,7 @@ Zero-warnings compilation:
 arduino-cli compile --fqbn arduino:avr:uno --quiet --warnings all . --build-property compiler.cpp.extra_flags="-std=c++1z"
 ```
 
-# Code
-
-* [Example][Example]
-* [Interface][Interface]
-* [Implementation][Implementation]
-
-
-# See also
+## See also
 
 * [My other embedded C++ libraries][Embedded]
 * [My other repositories][Repos]
