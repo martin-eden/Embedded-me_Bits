@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2024-10-25
+  Last mod.: 2024-10-26
 */
 
 #pragma once
@@ -11,22 +11,21 @@
 
 namespace me_Bits
 {
-  // Set bit in byte
-  TBool SetBit(
-    TUint_1 * Result,
-    TUint_1 Value,
-    TUint_1 Offset,
-    TBool BitValue
-  );
-
   // Get bit in byte
   TBool GetBit(
-    TBool * Result,
     TUint_1 Value,
     TUint_1 Offset
+  );
+
+  // Set bit in byte
+  TBool SetBit(
+    TUint_1 * Value,
+    TUint_1 Offset,
+    TBool BitValue
   );
 }
 
 /*
   2024-10-25
+  2024-10-26
 */
