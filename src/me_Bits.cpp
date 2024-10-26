@@ -14,9 +14,18 @@ using namespace me_Bits;
 const TUint_1 BitsInByte = 8;
 const TUint_1 MaxOffset = BitsInByte - 1;
 
-// Get bit in byte
+/*
+  Get bit in byte
+
+  Most callers want to see this function as returning bit value,
+  not execution status. Most callers are sure they are passing
+  valid bit offset.
+
+  If invalid bit offset is passed, we return false. So there is
+  clash between execution status and return value. But I think
+  callers will debug their code.
+*/
 TBool me_Bits::GetBit(
-  TBool * Result,
   TUint_1 Value,
   TUint_1 Offset
 )
@@ -24,17 +33,24 @@ TBool me_Bits::GetBit(
   if (Offset > MaxOffset)
     return false;
 
+  TBool Result;
+
   TUint_1 Mask = (1 << Offset);
 
-  *Result = ((Value & Mask) != 0);
+  Result = ((Value & Mask) != 0);
 
-  return true;
+  return Result;
 }
 
-// Set bit in byte
+/*
+  Set bit in byte
+
+  We're updating value in place.
+
+  Unlike GetBit() we have freedom to return execution status.
+*/
 TBool me_Bits::SetBit(
-  TUint_1 * Result,
-  TUint_1 Value,
+  TUint_1 * Value,
   TUint_1 Offset,
   TBool BitValue
 )
@@ -48,13 +64,13 @@ TBool me_Bits::SetBit(
   {
     // Clear bit
     Mask = ~(1 << Offset);
-    *Result = Value & Mask;
+    *Value = *Value & Mask;
   }
   else if (BitValue == true)
   {
     // Set bit
     Mask = (1 << Offset);
-    *Result = Value | Mask;
+    *Value = *Value | Mask;
   }
 
   return true;
@@ -62,4 +78,5 @@ TBool me_Bits::SetBit(
 
 /*
   2024-10-25
+  2024-10-26
 */
