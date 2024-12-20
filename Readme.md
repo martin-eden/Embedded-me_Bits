@@ -18,15 +18,9 @@ I can write `v & ~(5 << 1) >> 5`, no worries. But I don't like it.
   * arduino-cli
   * bash
 
-## Install
+## Install/remove
 
-Run [Install.sh](Install.sh).
-
-
-## Remove
-
-Run [Remove.sh](Remove.sh).
-
+Easy way is to clone [GetLibs][GetLibs] repo and run it's code.
 
 ## Compile
 
@@ -44,6 +38,8 @@ arduino-cli compile --fqbn arduino:avr:uno --quiet --warnings all . --build-prop
 [Example]: examples/me_Bits/me_Bits.ino
 [Interface]: src/me_Bits.h
 [Implementation]: src/me_Bits.cpp
+
+[GetLibs]: https://github.com/martin-eden/Embedded-Framework-GetLibs
 
 [Embedded]: https://github.com/martin-eden/Embedded_Crafts/tree/master/Parts
 [Repos]: https://github.com/martin-eden/contents
