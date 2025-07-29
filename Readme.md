@@ -1,8 +1,8 @@
 ## What
 
-(2024-10)
+(2024-10, 2025-07)
 
-Bits access. Arduino library. In growing.
+Bits access. Arduino library.
 
 Currently there's only set-bit/get-bit functions for bytes.
 I can write `v & ~(5 << 1) >> 5`, no worries. But I don't like it.
