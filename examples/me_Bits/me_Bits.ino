@@ -11,6 +11,18 @@
 #include <me_Uart.h>
 #include <me_Console.h>
 
+/*
+  Get byte
+
+  We need non-fixed value. Else gcc just hardcodes result output.
+*/
+void GetByte(
+  TUint_1 * Byte
+)
+{
+  *Byte = analogRead(A0);
+}
+
 void PrintByte(
   TUint_1 Byte
 )
@@ -28,68 +40,79 @@ void PrintBit(
   using
     me_Bits::GetBit;
 
+  TUint_1 BitValue;
+
   Console.Write("Bit");
   Console.Print(BitOffset);
-  Console.Write("is ");
+  Console.Write("is");
 
-  if (GetBit(Byte, BitOffset))
-    Console.Write("1");
-  else
-    Console.Write("0");
+  if (!GetBit(&BitValue, Byte, BitOffset))
+    Console.Print("( Failed to get bit )");
 
+  Console.Print(BitValue);
   Console.EndLine();
 }
 
 void RunTest()
 {
   using
-    me_Bits::SetBit;
+    me_Bits::SetBitToOne,
+    me_Bits::SetBitToZero;
 
   TUint_1 Byte;
 
-  // Filling 0x00 with ones
+  // Filling byte with ones
   {
-    Console.Print("( Filling 0x00 with ones");
+    Console.Print("( Filling byte with ones");
+    Console.Indent();
 
-    Byte = 0;
-
+    GetByte(&Byte);
     PrintByte(Byte);
 
     for (TUint_1 Offset = 0; Offset < 8; ++Offset)
     {
-      SetBit(&Byte, Offset, true);
+      if (!SetBitToOne(&Byte, Offset))
+        Console.Print("Failed to set bit.");
+
       PrintByte(Byte);
     }
 
+    Console.Unindent();
     Console.Print(")");
   }
 
-  // Filling 0xFF with zeroes
+  // Filling byte with zeroes
   {
-    Console.Print("( Filling 0xFF with zeroes");
+    Console.Print("( Filling byte with zeroes");
+    Console.Indent();
 
-    Byte = 0xFF;
-
+    GetByte(&Byte);
     PrintByte(Byte);
 
-    for (TUint_1 Offset = 0; Offset < 8; ++Offset)
+    for (TSint_1 Offset = 7; Offset >= 0; --Offset)
     {
-      SetBit(&Byte, Offset, false);
+      if (!SetBitToZero(&Byte, Offset))
+        Console.Print("Failed to set bit.");
+
       PrintByte(Byte);
     }
 
+    Console.Unindent();
     Console.Print(")");
   }
 
   // Getting bits of some byte value
   {
-    Console.Print("( Getting bits of byte 01101001");
+    Console.Print("( Getting bits of byte");
+    Console.Indent();
 
-    Byte = B01101001;
+    GetByte(&Byte);
+    PrintByte(Byte);
 
     for (TSint_1 Offset = 7; Offset >= 0; --Offset)
       PrintBit(Offset, Byte);
 
+    Console.Unindent();
     Console.Print(")");
   }
 }
