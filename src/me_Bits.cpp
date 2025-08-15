@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2024-10-25
+  Last mod.: 2025-08-15
 */
 
 #include "me_Bits.h"
@@ -20,7 +20,7 @@ const TUint_1
 
   Internal.
 */
-TBool CheckBitOffset(
+TBool Freetown::CheckBitOffset(
   TUint_1 BitOffset
 )
 {
@@ -32,7 +32,7 @@ TBool CheckBitOffset(
 
   Internal.
 */
-TBool CheckBitValue(
+TBool Freetown::CheckBitValue(
   TUint_1 BitValue
 )
 {
@@ -48,7 +48,7 @@ TBool me_Bits::GetBit(
   TUint_1 Offset
 )
 {
-  if (!CheckBitOffset(Offset))
+  if (!Freetown::CheckBitOffset(Offset))
     return false;
 
   *BitValue = (Value >> Offset) & 1;
@@ -64,7 +64,7 @@ TBool me_Bits::SetBitToZero(
   TUint_1 Offset
 )
 {
-  if (!CheckBitOffset(Offset))
+  if (!Freetown::CheckBitOffset(Offset))
     return false;
 
   *Value = *Value & (~(1 << Offset));
@@ -80,7 +80,7 @@ TBool me_Bits::SetBitToOne(
   TUint_1 Offset
 )
 {
-  if (!CheckBitOffset(Offset))
+  if (!Freetown::CheckBitOffset(Offset))
     return false;
 
   *Value = *Value | (1 << Offset);
@@ -97,7 +97,7 @@ TBool me_Bits::SetBit(
   TUint_1 BitValue
 )
 {
-  if (!CheckBitValue(BitValue))
+  if (!Freetown::CheckBitValue(BitValue))
     return false;
 
   if (BitValue == 1)
@@ -109,4 +109,5 @@ TBool me_Bits::SetBit(
 /*
   2024-10 # #
   2025-07-29
+  2025-08-15
 */

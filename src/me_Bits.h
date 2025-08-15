@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-07-29
+  Last mod.: 2025-08-15
 */
 
 #pragma once
@@ -39,10 +39,18 @@ namespace me_Bits
     TUint_1 Offset,
     TUint_1 BitValue
   );
+
+  // Internals for some clients
+  namespace Freetown
+  {
+    TBool CheckBitOffset(TUint_1 BitOffset);
+    TBool CheckBitValue(TUint_1 BitValue);
+  }
 }
 
 /*
   2024-10-25
   2024-10-26
   2025-07-29
+  2025-08-15 Checkers are now exposed in Freetown
 */
