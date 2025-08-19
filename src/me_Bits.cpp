@@ -1,8 +1,8 @@
-// Bits access
+// Bits access. Interface implementation
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-15
+  Last mod.: 2025-08-19
 */
 
 #include "me_Bits.h"
@@ -11,28 +11,10 @@
 
 using namespace me_Bits;
 
-const TUint_1
-  BitsInByte = 8,
-  MaxOffset = BitsInByte - 1;
-
-/*
-  Check bit offset
-
-  Internal.
-*/
-TBool Freetown::CheckBitOffset(
-  TUint_1 BitOffset
-)
-{
-  return (BitOffset <= MaxOffset);
-}
-
 /*
   Check bit value
-
-  Internal.
 */
-TBool Freetown::CheckBitValue(
+TBool me_Bits::CheckBitValue(
   TUint_1 BitValue
 )
 {
@@ -40,50 +22,28 @@ TBool Freetown::CheckBitValue(
 }
 
 /*
+  Check bit offset
+*/
+TBool me_Bits::CheckBitOffset(
+  TUint_1 BitOffset
+)
+{
+  return (BitOffset <= 7);
+}
+
+/*
   Get bit in byte
 */
 TBool me_Bits::GetBit(
   TUint_1 * BitValue,
-  TUint_1 Value,
-  TUint_1 Offset
+  TUint_1 ByteValue,
+  TUint_1 BitOffset
 )
 {
-  if (!Freetown::CheckBitOffset(Offset))
+  if (!CheckBitOffset(BitOffset))
     return false;
 
-  *BitValue = (Value >> Offset) & 1;
-
-  return true;
-}
-
-/*
-  Set bit to zero
-*/
-TBool me_Bits::SetBitToZero(
-  TUint_1 * Value,
-  TUint_1 Offset
-)
-{
-  if (!Freetown::CheckBitOffset(Offset))
-    return false;
-
-  *Value = *Value & (~(1 << Offset));
-
-  return true;
-}
-
-/*
-  Set bit to one
-*/
-TBool me_Bits::SetBitToOne(
-  TUint_1 * Value,
-  TUint_1 Offset
-)
-{
-  if (!Freetown::CheckBitOffset(Offset))
-    return false;
-
-  *Value = *Value | (1 << Offset);
+  Freetown::GetBit(BitValue, ByteValue, BitOffset);
 
   return true;
 }
@@ -91,23 +51,29 @@ TBool me_Bits::SetBitToOne(
 /*
   Set bit in byte
 */
-TBool me_Bits::SetBit(
-  TUint_1 * Value,
-  TUint_1 Offset,
+TBool me_Bits::SetBitTo(
+  TUint_1 * ByteValue,
+  TUint_1 BitOffset,
   TUint_1 BitValue
 )
 {
-  if (!Freetown::CheckBitValue(BitValue))
+  if (!CheckBitOffset(BitOffset))
+    return false;
+
+  if (!CheckBitValue(BitValue))
     return false;
 
   if (BitValue == 1)
-    return SetBitToOne(Value, Offset);
+    Freetown::SetBit(ByteValue, BitOffset);
   else
-    return SetBitToZero(Value, Offset);
+    Freetown::ClearBit(ByteValue, BitOffset);
+
+  return true;
 }
 
 /*
   2024-10 # #
   2025-07-29
   2025-08-15
+  2025-08-19
 */

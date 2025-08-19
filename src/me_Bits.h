@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-15
+  Last mod.: 2025-08-19
 */
 
 #pragma once
@@ -11,40 +11,55 @@
 
 /*
   Getting/setting bit in byte
+
+  Common sequence of arguments is
+
+    byte value, bit offset
 */
 namespace me_Bits
 {
-  // Get bit
-  TBool GetBit(
-    TUint_1 * BitValue,
-    TUint_1 Value,
-    TUint_1 Offset
-  );
-
-  // Set bit to zero
-  TBool SetBitToZero(
-    TUint_1 * Value,
-    TUint_1 Offset
-  );
-
-  // Set bit to one
-  TBool SetBitToOne(
-    TUint_1 * Value,
-    TUint_1 Offset
-  );
-
-  // Set bit to value
-  TBool SetBit(
-    TUint_1 * Value,
-    TUint_1 Offset,
+  // Check bit value
+  TBool CheckBitValue(
     TUint_1 BitValue
   );
 
-  // Internals for some clients
+  // Check bit offset
+  TBool CheckBitOffset(
+    TUint_1 BitOffset
+  );
+
+  // Get bit
+  TBool GetBit(
+    TUint_1 * BitValue,
+    TUint_1 ByteValue,
+    TUint_1 BitOffset
+  );
+
+  // Set bit to value
+  TBool SetBitTo(
+    TUint_1 * ByteValue,
+    TUint_1 BitOffset,
+    TUint_1 BitValue
+  );
+
+  // Core implementation
   namespace Freetown
   {
-    TBool CheckBitOffset(TUint_1 BitOffset);
-    TBool CheckBitValue(TUint_1 BitValue);
+    void GetBit(
+      TUint_1 * BitValue,
+      TUint_1 ByteValue,
+      TUint_1 BitOffset
+    );
+
+    void SetBit(
+      TUint_1 * ByteValue,
+      TUint_1 BitOffset
+    );
+
+    void ClearBit(
+      TUint_1 * ByteValue,
+      TUint_1 BitOffset
+    );
   }
 }
 
@@ -53,4 +68,5 @@ namespace me_Bits
   2024-10-26
   2025-07-29
   2025-08-15 Checkers are now exposed in Freetown
+  2025-08-19 Core in Freetown, checkers in main, renamed functions
 */

@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-07-29
+  Last mod.: 2025-08-19
 */
 
 #include <me_Bits.h>
@@ -34,7 +34,7 @@ void PrintByte(
 
 void PrintBit(
   TUint_1 BitOffset,
-  TUint_1 Byte
+  TUint_1 ByteValue
 )
 {
   using
@@ -46,7 +46,7 @@ void PrintBit(
   Console.Print(BitOffset);
   Console.Write("is");
 
-  if (!GetBit(&BitValue, Byte, BitOffset))
+  if (!GetBit(&BitValue, ByteValue, BitOffset))
     Console.Print("( Failed to get bit )");
 
   Console.Print(BitValue);
@@ -55,10 +55,6 @@ void PrintBit(
 
 void RunTest()
 {
-  using
-    me_Bits::SetBitToOne,
-    me_Bits::SetBitToZero;
-
   TUint_1 Byte;
 
   // Filling byte with ones
@@ -69,9 +65,9 @@ void RunTest()
     GetByte(&Byte);
     PrintByte(Byte);
 
-    for (TUint_1 Offset = 0; Offset < 8; ++Offset)
+    for (TUint_1 BitOffs = 0; BitOffs < 8; ++BitOffs)
     {
-      if (!SetBitToOne(&Byte, Offset))
+      if (!me_Bits::SetBitTo(&Byte, BitOffs, 1))
         Console.Print("Failed to set bit.");
 
       PrintByte(Byte);
@@ -89,9 +85,9 @@ void RunTest()
     GetByte(&Byte);
     PrintByte(Byte);
 
-    for (TSint_1 Offset = 7; Offset >= 0; --Offset)
+    for (TSint_1 BitOffs = 7; BitOffs >= 0; --BitOffs)
     {
-      if (!SetBitToZero(&Byte, Offset))
+      if (!me_Bits::SetBitTo(&Byte, BitOffs, 0))
         Console.Print("Failed to set bit.");
 
       PrintByte(Byte);
@@ -109,8 +105,8 @@ void RunTest()
     GetByte(&Byte);
     PrintByte(Byte);
 
-    for (TSint_1 Offset = 7; Offset >= 0; --Offset)
-      PrintBit(Offset, Byte);
+    for (TSint_1 BitOffs = 7; BitOffs >= 0; --BitOffs)
+      PrintBit(BitOffs, Byte);
 
     Console.Unindent();
     Console.Print(")");
@@ -132,4 +128,5 @@ void loop()
 /*
   2024-10-25
   2025-07-29
+  2025-08-19
 */
