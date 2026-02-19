@@ -2,17 +2,17 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-19
+  Last mod.: 2026-02-19
 */
 
-#include "me_Bits.h"
+#include <me_Bits.h>
 
 #include <me_BaseTypes.h>
 
 using namespace me_Bits;
 
 /*
-  Check bit value
+  Check bit value: 0 or 1
 */
 TBool me_Bits::CheckBitValue(
   TUint_1 BitValue
@@ -22,10 +22,10 @@ TBool me_Bits::CheckBitValue(
 }
 
 /*
-  Check bit offset
+  Check bit offset: from 0 to 7
 */
 TBool me_Bits::CheckBitOffset(
-  TUint_1 BitOffset
+  TBitOffset BitOffset
 )
 {
   return (BitOffset <= 7);
@@ -35,9 +35,9 @@ TBool me_Bits::CheckBitOffset(
   Get bit in byte
 */
 TBool me_Bits::GetBit(
-  TUint_1 * BitValue,
+  TBitValue * BitValue,
   TUint_1 ByteValue,
-  TUint_1 BitOffset
+  TBitOffset BitOffset
 )
 {
   if (!CheckBitOffset(BitOffset))
@@ -54,7 +54,7 @@ TBool me_Bits::GetBit(
 TBool me_Bits::SetBitTo(
   TUint_1 * ByteValue,
   TUint_1 BitOffset,
-  TUint_1 BitValue
+  TBitValue BitValue
 )
 {
   if (!CheckBitOffset(BitOffset))
@@ -72,8 +72,7 @@ TBool me_Bits::SetBitTo(
 }
 
 /*
-  2024-10 # #
-  2025-07-29
-  2025-08-15
-  2025-08-19
+  2024 # #
+  2025 # # #
+  2026-02-19
 */

@@ -1,72 +1,46 @@
-// Bits access
+// Getting/setting bits in argument's byte
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-19
+  Last mod.: 2026-02-19
 */
 
 #pragma once
 
 #include <me_BaseTypes.h>
 
-/*
-  Getting/setting bit in byte
-
-  Common sequence of arguments is
-
-    byte value, bit offset
-*/
 namespace me_Bits
 {
+  // Bit value: 0/1
+  typedef TUint_1 TBitValue;
+
   // Check bit value
-  TBool CheckBitValue(
-    TUint_1 BitValue
-  );
+  TBool CheckBitValue(TBitValue);
+
+  // Bit offset: 0..7
+  typedef TUint_1 TBitOffset;
 
   // Check bit offset
-  TBool CheckBitOffset(
-    TUint_1 BitOffset
-  );
+  TBool CheckBitOffset(TBitOffset);
 
   // Get bit
-  TBool GetBit(
-    TUint_1 * BitValue,
-    TUint_1 ByteValue,
-    TUint_1 BitOffset
-  );
+  TBool GetBit(TBitValue *, TUint_1, TBitOffset);
 
   // Set bit to value
-  TBool SetBitTo(
-    TUint_1 * ByteValue,
-    TUint_1 BitOffset,
-    TUint_1 BitValue
-  );
+  TBool SetBitTo(TUint_1 *, TBitOffset, TBitValue);
 
-  // Core implementation
+  // Core functions
   namespace Freetown
   {
-    void GetBit(
-      TUint_1 * BitValue,
-      TUint_1 ByteValue,
-      TUint_1 BitOffset
-    );
-
-    void SetBit(
-      TUint_1 * ByteValue,
-      TUint_1 BitOffset
-    );
-
-    void ClearBit(
-      TUint_1 * ByteValue,
-      TUint_1 BitOffset
-    );
+    void GetBit(TBitValue *, TUint_1, TBitOffset);
+    void SetBit(TUint_1 *, TBitOffset);
+    void ClearBit(TUint_1 *, TBitOffset);
+    void ToggleBit(TUint_1 *, TBitOffset);
   }
 }
 
 /*
-  2024-10-25
-  2024-10-26
-  2025-07-29
-  2025-08-15 Checkers are now exposed in Freetown
-  2025-08-19 Core in Freetown, checkers in main, renamed functions
+  2024 # #
+  2025 # # #
+  2026-02-19
 */
