@@ -9,6 +9,7 @@
 
 #include <me_BaseTypes.h>
 #include <me_Console.h>
+#include <me_Delays.h>
 
 /*
   Get byte
@@ -32,27 +33,24 @@ void PrintByte(
 }
 
 void PrintBit(
-  TUint_1 BitOffset,
+  me_Bits::TBitOffset BitOffset,
   TUint_1 ByteValue
 )
 {
-  using
-    me_Bits::GetBit;
-
-  TUint_1 BitValue;
+  me_Bits::TBitValue BitValue;
 
   Console.Write("Bit");
   Console.Print(BitOffset);
   Console.Write("is");
 
-  if (!GetBit(&BitValue, ByteValue, BitOffset))
+  if (!me_Bits::GetBit(&BitValue, ByteValue, BitOffset))
     Console.Print("( Failed to get bit )");
 
   Console.Print(BitValue);
   Console.EndLine();
 }
 
-void RunTest()
+void RunArgBitTest()
 {
   TUint_1 Byte;
 
@@ -64,9 +62,9 @@ void RunTest()
     GetByte(&Byte);
     PrintByte(Byte);
 
-    for (TUint_1 BitOffs = 0; BitOffs < 8; ++BitOffs)
+    for (me_Bits::TBitOffset BitOffset = 0; BitOffset < 8; ++BitOffset)
     {
-      if (!me_Bits::SetBitTo(&Byte, BitOffs, 1))
+      if (!me_Bits::SetBitTo(&Byte, BitOffset, 1))
         Console.Print("Failed to set bit.");
 
       PrintByte(Byte);
@@ -112,11 +110,48 @@ void RunTest()
   }
 }
 
+void RunFixedBitTest()
+{
+  // Set output LED to ON, delay, set to OFF, check it's off
+  {
+    const me_Bits::TBitLocation
+      PinModeBitLoc = { Address: 36, BitOffset: 5 },
+      PinDriveBitLoc = { Address: 37, BitOffset: 5 };
+
+    me_Bits::TBit PinModeBit;
+    me_Bits::TBit PinDriveBit;
+
+    PinModeBit.SetLocation(PinModeBitLoc);
+    PinDriveBit.SetLocation(PinDriveBitLoc);
+
+    PinModeBit.Set();
+
+    // Blink LED several times
+    {
+      const TUint_1 NumRuns = 3;
+
+      for (TUint_1 RunNumber = 1; RunNumber <= NumRuns; ++RunNumber)
+      {
+        Console.Print("LED blink");
+
+        PinDriveBit.Clear();
+        me_Delays::Delay_Ms(1000);
+        PinDriveBit.Set();
+        me_Delays::Delay_Ms(1000);
+      }
+    }
+
+    if (PinDriveBit.Get() != 1)
+      Console.Print("Unexpected bit value");
+  }
+}
+
 void setup()
 {
   Console.Init();
   Console.Print("[me_Bits] Start.");
-  RunTest();
+  RunArgBitTest();
+  RunFixedBitTest();
   Console.Print("[me_Bits] Done.");
 }
 
@@ -128,4 +163,5 @@ void loop()
   2024-10-25
   2025-07-29
   2025-08-19
+  2026-02-20
 */

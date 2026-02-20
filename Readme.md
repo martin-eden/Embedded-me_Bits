@@ -1,17 +1,16 @@
 ## What
 
-(2024-10, 2025-07)
+(2024-10, 2025-07, 2026-02)
 
 Bits access. Arduino library.
 
-Currently there's only set-bit/get-bit functions for bytes.
 I can write `v & ~(5 << 1) >> 5`, no worries. But I don't like it.
 
 ## Code
 
-* [Example][Example]
 * [Interface][Interface]
 * [Implementation][Implementation]
+* [Example][Example]
 
 ## Requirements
 
@@ -35,9 +34,9 @@ arduino-cli compile --fqbn arduino:avr:uno --quiet --warnings all . --build-prop
 * [My other embedded C++ libraries][Embedded]
 * [My other repositories][Repos]
 
-[Example]: examples/me_Bits/me_Bits.ino
 [Interface]: src/me_Bits.h
 [Implementation]: src/me_Bits.cpp
+[Example]: examples/me_Bits/me_Bits.ino
 
 [GetLibs]: https://github.com/martin-eden/Embedded-Framework-GetLibs
 

@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2026-02-19
+  Last mod.: 2026-02-20
 */
 
 #include <me_Bits.h>
@@ -12,15 +12,25 @@
 using namespace me_Bits;
 
 /*
+  Get bit's mask
+*/
+TUint_1 Freetown::GetBitMask(
+  TBitOffset BitOffset
+)
+{
+  return (1 << BitOffset);
+}
+
+/*
   Get bit in byte
 */
 void Freetown::GetBit(
   TBitValue * BitValue,
   TUint_1 ByteValue,
-  TBitOffset BitOffset
+  TUint_1 BitMask
 )
 {
-  *BitValue = (ByteValue >> BitOffset) & 1;
+  *BitValue = TBitValue((ByteValue & BitMask) != 0);
 }
 
 /*
@@ -28,10 +38,10 @@ void Freetown::GetBit(
 */
 void Freetown::SetBit(
   TUint_1 * ByteValue,
-  TBitOffset BitOffset
+  TUint_1 BitMask
 )
 {
-  *ByteValue = *ByteValue | (1 << BitOffset);
+  *ByteValue |= BitMask;
 }
 
 /*
@@ -39,10 +49,10 @@ void Freetown::SetBit(
 */
 void Freetown::ClearBit(
   TUint_1 * ByteValue,
-  TBitOffset BitOffset
+  TUint_1 BitMask
 )
 {
-  *ByteValue = *ByteValue & (~(1 << BitOffset));
+  *ByteValue &= ~BitMask;
 }
 
 /*
@@ -50,14 +60,15 @@ void Freetown::ClearBit(
 */
 void Freetown::ToggleBit(
   TUint_1 * ByteValue,
-  TBitOffset BitOffset
+  TUint_1 BitMask
 )
 {
-  *ByteValue = *ByteValue ^ (1 << BitOffset);
+  *ByteValue ^= BitMask;
 }
 
 /*
   2024 # #
   2025 # # #
   2026-02-19
+  2026-02-20
 */
