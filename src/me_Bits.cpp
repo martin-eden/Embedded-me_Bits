@@ -91,17 +91,9 @@ TBool me_Bits::IsValidLocation(
 }
 
 /*
-  Get location
+  Init: Set location
 */
-TBitLocation TBit::GetLocation()
-{
-  return Location;
-}
-
-/*
-  Set location
-*/
-TBool TBit::SetLocation(
+TBool TBit::Init(
   TBitLocation Location
 )
 {
@@ -112,6 +104,14 @@ TBool TBit::SetLocation(
   BitMask = Freetown::GetBitMask(Location.BitOffset);
 
   return true;
+}
+
+/*
+  Get location
+*/
+TBitLocation TBit::GetLocation()
+{
+  return Location;
 }
 
 /*

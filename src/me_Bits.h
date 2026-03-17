@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2026-02-20
+  Last mod.: 2026-03-17
 */
 
 #pragma once
@@ -43,8 +43,8 @@ namespace me_Bits
   class TBit
   {
     public:
+      TBool Init(TBitLocation);
       TBitLocation GetLocation();
-      TBool SetLocation(TBitLocation);
 
       TBitValue Get();
       void Set();
@@ -75,4 +75,5 @@ namespace me_Bits
   2026-02-17
   2026-02-19
   2026-02-20
+  2026-03-17
 */

@@ -121,8 +121,8 @@ void RunFixedBitTest()
     me_Bits::TBit PinModeBit;
     me_Bits::TBit PinDriveBit;
 
-    PinModeBit.SetLocation(PinModeBitLoc);
-    PinDriveBit.SetLocation(PinDriveBitLoc);
+    PinModeBit.Init(PinModeBitLoc);
+    PinDriveBit.Init(PinDriveBitLoc);
 
     PinModeBit.Set();
 
