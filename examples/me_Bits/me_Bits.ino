@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2026-02-20
+  Last mod.: 2026-03-30
 */
 
 #include <me_Bits.h>
@@ -43,7 +43,7 @@ void PrintBit(
   Console.Print(BitOffset);
   Console.Write("is");
 
-  if (!me_Bits::GetBit(&BitValue, ByteValue, BitOffset))
+  if (!me_Bits::GetBit(&BitValue, &ByteValue, BitOffset))
     Console.Print("( Failed to get bit )");
 
   Console.Print(BitValue);

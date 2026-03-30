@@ -18,7 +18,7 @@ namespace me_Bits
   typedef TUint_1 TBitOffset;
 
   // Get bit
-  TBool GetBit(TBitValue *, TUint_1, TBitOffset);
+  TBool GetBit(TBitValue *, TUint_1 *, TBitOffset);
 
   // Set bit to value
   TBool SetBitTo(TUint_1 *, TBitOffset, TBitValue);

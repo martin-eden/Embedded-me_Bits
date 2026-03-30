@@ -16,7 +16,7 @@ using namespace me_Bits;
 */
 TBool me_Bits::GetBit(
   TBitValue * BitValue,
-  TUint_1 ByteValue,
+  TUint_1 * ByteValue,
   TBitOffset BitOffset
 )
 {
