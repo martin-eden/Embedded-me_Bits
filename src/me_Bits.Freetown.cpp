@@ -63,13 +63,12 @@ TUint_1 Freetown::GetBitMask(
 /*
   Get bit in byte
 */
-void Freetown::GetBit(
-  TBitValue * BitValue,
-  TUint_1 ByteValue,
+TBitValue Freetown::GetBit(
+  TUint_1 * ByteValue,
   TUint_1 BitMask
 )
 {
-  *BitValue = TBitValue((ByteValue & BitMask) != 0);
+  return TBitValue((*ByteValue & BitMask) != 0);
 }
 
 /*
