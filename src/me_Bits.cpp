@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2026-02-19
+  Last mod.: 2026-03-30
 */
 
 #include <me_Bits.h>
@@ -81,7 +81,7 @@ TBool me_Bits::IsValidLocation(
   TBitLocation Location
 )
 {
-  if (!me_WorkMemory::CheckAddress(Location.Address))
+  if (!me_WorkMemory::Freetown::CheckAddress(Location.Address))
     return false;
 
   if (!me_Bits::CheckBitOffset(Location.BitOffset))
