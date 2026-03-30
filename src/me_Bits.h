@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2026-03-17
+  Last mod.: 2026-03-30
 */
 
 #pragma once
@@ -14,14 +14,8 @@ namespace me_Bits
   // Bit value: 0/1
   typedef TUint_1 TBitValue;
 
-  // Check bit value
-  TBool CheckBitValue(TBitValue);
-
   // Bit offset: 0..7
   typedef TUint_1 TBitOffset;
-
-  // Check bit offset
-  TBool CheckBitOffset(TBitOffset);
 
   // Get bit
   TBool GetBit(TBitValue *, TUint_1, TBitOffset);
@@ -35,9 +29,6 @@ namespace me_Bits
     TAddress Address;
     TBitOffset BitOffset;
   };
-
-  // Verify bit location
-  TBool IsValidLocation(TBitLocation);
 
   // Bit in memory: implementing operations using mask byte
   class TBit
@@ -61,7 +52,12 @@ namespace me_Bits
   // Core functions
   namespace Freetown
   {
+    TBool CheckBitValue(TBitValue);
+    TBool CheckBitOffset(TBitOffset);
+    TBool IsValidLocation(TBitLocation);
+
     TUint_1 GetBitMask(TBitOffset);
+
     void GetBit(TBitValue *, TUint_1 Value, TUint_1 BitMask);
     void SetBit(TUint_1 *, TUint_1 BitMask);
     void ClearBit(TUint_1 *, TUint_1 BitMask);
@@ -76,4 +72,5 @@ namespace me_Bits
   2026-02-19
   2026-02-20
   2026-03-17
+  2026-03-30
 */

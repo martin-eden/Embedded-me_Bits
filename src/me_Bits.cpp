@@ -8,29 +8,8 @@
 #include <me_Bits.h>
 
 #include <me_BaseTypes.h>
-#include <me_WorkMemory.h>
 
 using namespace me_Bits;
-
-/*
-  Check bit value: 0 or 1
-*/
-TBool me_Bits::CheckBitValue(
-  TUint_1 BitValue
-)
-{
-  return (BitValue <= 1);
-}
-
-/*
-  Check bit offset: from 0 to 7
-*/
-TBool me_Bits::CheckBitOffset(
-  TBitOffset BitOffset
-)
-{
-  return (BitOffset <= 7);
-}
 
 /*
   Get bit in byte
@@ -41,7 +20,7 @@ TBool me_Bits::GetBit(
   TBitOffset BitOffset
 )
 {
-  if (!CheckBitOffset(BitOffset))
+  if (!Freetown::CheckBitOffset(BitOffset))
     return false;
 
   Freetown::GetBit(BitValue, ByteValue, Freetown::GetBitMask(BitOffset));
@@ -58,10 +37,10 @@ TBool me_Bits::SetBitTo(
   TBitValue BitValue
 )
 {
-  if (!CheckBitOffset(BitOffset))
+  if (!Freetown::CheckBitOffset(BitOffset))
     return false;
 
-  if (!CheckBitValue(BitValue))
+  if (!Freetown::CheckBitValue(BitValue))
     return false;
 
   if (BitValue == 1)
@@ -73,31 +52,13 @@ TBool me_Bits::SetBitTo(
 }
 
 /*
-  Check bit location
-
-  We're checking validity of memory address and bit offset
-*/
-TBool me_Bits::IsValidLocation(
-  TBitLocation Location
-)
-{
-  if (!me_WorkMemory::Freetown::CheckAddress(Location.Address))
-    return false;
-
-  if (!me_Bits::CheckBitOffset(Location.BitOffset))
-    return false;
-
-  return true;
-}
-
-/*
   Init: Set location
 */
 TBool TBit::Init(
   TBitLocation Location
 )
 {
-  if (!IsValidLocation(Location))
+  if (!Freetown::IsValidLocation(Location))
     return false;
 
   this->Location = Location;
@@ -153,7 +114,7 @@ TBool TBit::SetTo(
   TBitValue BitValue
 )
 {
-  if (!me_Bits::CheckBitValue(BitValue))
+  if (!Freetown::CheckBitValue(BitValue))
     return false;
 
   if (BitValue == 0)
@@ -169,4 +130,5 @@ TBool TBit::SetTo(
   2025 # # #
   2026-02-17
   2026-02-19
+  2026-03-30
 */

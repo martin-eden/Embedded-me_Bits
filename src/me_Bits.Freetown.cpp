@@ -2,14 +2,53 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2026-02-20
+  Last mod.: 2026-03-30
 */
 
 #include <me_Bits.h>
 
 #include <me_BaseTypes.h>
+#include <me_WorkMemory.h>
 
 using namespace me_Bits;
+
+/*
+  Check bit value: 0 or 1
+*/
+TBool Freetown::CheckBitValue(
+  TUint_1 BitValue
+)
+{
+  return (BitValue <= 1);
+}
+
+/*
+  Check bit offset: from 0 to 7
+*/
+TBool Freetown::CheckBitOffset(
+  TBitOffset BitOffset
+)
+{
+  return (BitOffset <= 7);
+}
+
+/*
+  Check bit location
+
+  We're checking validity of memory address and bit offset
+*/
+TBool Freetown::IsValidLocation(
+  TBitLocation Location
+)
+{
+  if (!me_WorkMemory::Freetown::CheckAddress(Location.Address))
+    return false;
+
+  if (!Freetown::CheckBitOffset(Location.BitOffset))
+    return false;
+
+  return true;
+}
 
 /*
   Get bit's mask
