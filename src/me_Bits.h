@@ -58,7 +58,7 @@ namespace me_Bits
 
     TUint_1 GetBitMask(TBitOffset);
 
-    void GetBit(TBitValue *, TUint_1 Value, TUint_1 BitMask);
+    TBitValue GetBit(TUint_1 *, TUint_1 BitMask);
     void SetBit(TUint_1 *, TUint_1 BitMask);
     void ClearBit(TUint_1 *, TUint_1 BitMask);
     void ToggleBit(TUint_1 *, TUint_1 BitMask);

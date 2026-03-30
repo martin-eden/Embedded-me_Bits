@@ -23,7 +23,7 @@ TBool me_Bits::GetBit(
   if (!Freetown::CheckBitOffset(BitOffset))
     return false;
 
-  Freetown::GetBit(BitValue, ByteValue, Freetown::GetBitMask(BitOffset));
+  *BitValue = Freetown::GetBit(ByteValue, Freetown::GetBitMask(BitOffset));
 
   return true;
 }

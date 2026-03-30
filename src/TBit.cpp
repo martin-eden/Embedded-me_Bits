@@ -40,7 +40,7 @@ TBitLocation TBit::GetLocation()
 */
 TBitValue TBit::Get()
 {
-  return TBitValue((*(TUint_1 *) Location.Address & BitMask) != 0);
+  return Freetown::GetBit((TUint_1 *) Location.Address, BitMask);
 }
 
 /*
@@ -48,7 +48,7 @@ TBitValue TBit::Get()
 */
 void TBit::Set()
 {
-  *(TUint_1 *) Location.Address |= BitMask;
+  Freetown::SetBit((TUint_1 *) Location.Address, BitMask);
 }
 
 /*
@@ -56,7 +56,7 @@ void TBit::Set()
 */
 void TBit::Clear()
 {
-  *(TUint_1 *) Location.Address &= ~BitMask;
+  Freetown::ClearBit((TUint_1 *) Location.Address, BitMask);
 }
 
 /*
@@ -64,7 +64,7 @@ void TBit::Clear()
 */
 void TBit::Toggle()
 {
-  *(TUint_1 *) Location.Address ^= BitMask;
+  Freetown::ToggleBit((TUint_1 *) Location.Address, BitMask);
 }
 
 /*
